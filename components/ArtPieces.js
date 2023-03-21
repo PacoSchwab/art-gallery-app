@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ArtPiecePreview from "./ArtPiecePreview";
 
 export default function ArtPieces({ pieces }) {
   console.log("pieces", pieces);
@@ -16,20 +16,5 @@ export default function ArtPieces({ pieces }) {
         );
       })}
     </ul>
-  );
-}
-
-function ArtPiecePreview({ src, name, artist }) {
-  return (
-    <li>
-      <Image
-        src={src}
-        alt={name}
-        width={300}
-        height={200}
-        style={{ borderRadius: "12px", objectFit: "cover" }}
-      />
-      {<p>{`"${name}" by ${artist}`}</p>}
-    </li>
   );
 }
