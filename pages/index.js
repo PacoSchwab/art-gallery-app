@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import ArtPieces from "../components/ArtPieces";
+import ArtPieces from "../components/ArtPieces/ArtPieces";
 
 export default function HomePage() {
   const { data, error, isLoading } = useSWR(
