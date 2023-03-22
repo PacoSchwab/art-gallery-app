@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }) {
 
   /* console.log("data", data); */
 
-  const [artPiecesInfo, setArtPiecesInfo] = useState();
+  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
   /* useEffect(() => {
     setArtPiecesInfo(data);
     console.log("data:", data);
@@ -50,7 +50,7 @@ export default function App({ Component, pageProps }) {
 
   /* console.log("art pieces info:", artPiecesInfo);
   console.log("isFavorite:", artPiecesInfo.isFavorite); */
-  console.log("artPiecesInfo", artPiecesInfo);
+  /*   console.log("artPiecesInfo", artPiecesInfo); */
 
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>{error.message}</div>;
@@ -61,10 +61,14 @@ export default function App({ Component, pageProps }) {
         <GlobalStyle />
         <Component
           {...pageProps}
-          pieces={artPiecesInfo === false ? data : artPiecesInfo}
+          pieces={data}
           onToggleFavorite={handleToggleFavorite}
         />
       </Layout>
     </>
   );
+}
+
+function isArray(myArray) {
+  return myArray.constructor === Array;
 }
