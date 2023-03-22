@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import ArtPieces from "../components/ArtPieces/ArtPieces";
+import Spotlight from "../components/Spotlight/Spotlight";
 
 export default function HomePage() {
   const { data, error, isLoading } = useSWR(
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <ArtPieces pieces={data} />
+      <Spotlight pieces={data} />
     </>
   );
 }
