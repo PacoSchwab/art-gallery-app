@@ -1,6 +1,7 @@
 import Image from "next/image";
-
-export default function ArtPiecePreview({ src, name, artist }) {
+import Link from "next/link";
+export default function ArtPiecePreview({ src, name, artist, slug }) {
+  console.log(slug);
   return (
     <li>
       <Image
@@ -10,6 +11,7 @@ export default function ArtPiecePreview({ src, name, artist }) {
         height={200}
         style={{ borderRadius: "12px", objectFit: "cover" }}
       />
+      <Link href={`/art-pieces/${slug}`}>{name}</Link>
       {<p>{`"${name}" by ${artist}`}</p>}
     </li>
   );
