@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ArtPieceDetails({
   image,
@@ -11,6 +12,9 @@ export default function ArtPieceDetails({
   console.log(image);
   return (
     <>
+      <button>
+        <Link href={"/art-pieces"}> Display all images</Link>
+      </button>
       <Image
         src={image}
         alt={title}

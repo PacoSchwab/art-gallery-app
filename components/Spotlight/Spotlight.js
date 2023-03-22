@@ -11,6 +11,7 @@ export default function Spotlight({ pieces }) {
         src={randomSpotlight.imageSource}
         name={randomSpotlight.name}
         artist={randomSpotlight.artist}
+        slug={randomSpotlight.slug}
       />
     </ul>
   );
