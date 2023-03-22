@@ -1,6 +1,6 @@
 import ArtPiecePreview from "../ArtPiecePreview/ArtPiecePreview";
 
-export default function ArtPieces({ pieces }) {
+export default function ArtPieces({ pieces, onToggleFavorite }) {
   console.log("pieces", pieces);
 
   const randomIndex = Math.floor(Math.random() * pieces.length);
@@ -17,6 +17,7 @@ export default function ArtPieces({ pieces }) {
             name={piece.name}
             artist={piece.artist}
             slug={piece.slug}
+            onToggleFavorite={onToggleFavorite}
           />
         );
       })}

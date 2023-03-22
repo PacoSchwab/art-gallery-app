@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-export default function ArtPiecePreview({ src, name, artist, slug }) {
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
+
+export default function ArtPiecePreview({
+  src,
+  name,
+  artist,
+  slug,
+  onToggleFavorite,
+}) {
   console.log(slug);
   return (
     <li>
@@ -13,6 +21,7 @@ export default function ArtPiecePreview({ src, name, artist, slug }) {
           style={{ borderRadius: "12px", objectFit: "cover" }}
         />
       </Link>
+      <FavoriteButton onToggleFavorite={onToggleFavorite} />
       <br />
       <Link href={`/art-pieces/${slug}`}>{`"${name}"`}</Link>
       <span>{` by ${artist}`}</span>
