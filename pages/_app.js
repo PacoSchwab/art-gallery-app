@@ -2,6 +2,7 @@ import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Layout from "../components/Layout/Layout";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -27,13 +28,16 @@ export default function App({ Component, pageProps }) {
 
   /* console.log("data", data); */
 
-  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
-  console.log("art pieces info:", artPiecesInfo);
+  const [artPiecesInfo, setArtPiecesInfo] = useState();
+  /* useEffect(() => {
+    setArtPiecesInfo(data);
+    console.log("data:", data);
+  }, []); */
   function handleToggleFavorite(slug) {
     /*  setNewEntries([...newEntries, { ...data, id: uid(), date }]); */
 
     setArtPiecesInfo(
-      data.map((artPieceInfo) =>
+      artPiecesInfo.map((artPieceInfo) =>
         slug === artPieceInfo.slug
           ? {
               ...artPieceInfo,
@@ -44,8 +48,9 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  console.log("isFavorite:", artPiecesInfo.isFavorite);
-  /*   console.log("artPiecesInfo", artPiecesInfo); */
+  /* console.log("art pieces info:", artPiecesInfo);
+  console.log("isFavorite:", artPiecesInfo.isFavorite); */
+  console.log("artPiecesInfo", artPiecesInfo);
 
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>{error.message}</div>;
@@ -56,7 +61,7 @@ export default function App({ Component, pageProps }) {
         <GlobalStyle />
         <Component
           {...pageProps}
-          pieces={data}
+          pieces={artPiecesInfo === false ? data : artPiecesInfo}
           onToggleFavorite={handleToggleFavorite}
         />
       </Layout>
