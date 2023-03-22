@@ -1,5 +1,4 @@
 import GlobalStyle from "../styles";
-import { SWRConfig } from "swr";
 import useSWR from "swr";
 import Layout from "../components/Layout/Layout";
 import { useState } from "react";
@@ -26,22 +25,27 @@ export default function App({ Component, pageProps }) {
     fetcher
   );
 
-  console.log("data", data);
+  /* console.log("data", data); */
 
-  const [artPiecesInfo, setArtPiecesInfo] = useState(data);
-
+  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  console.log("art pieces info:", artPiecesInfo);
   function handleToggleFavorite(slug) {
+    /*  setNewEntries([...newEntries, { ...data, id: uid(), date }]); */
+
     setArtPiecesInfo(
-      artPiecesInfo.map((artPieceInfo) =>
+      data.map((artPieceInfo) =>
         slug === artPieceInfo.slug
           ? {
               ...artPieceInfo,
               isFavorite: !artPieceInfo.isFavorite,
             }
-          : artPieceInfo
+          : { artPieceInfo }
       )
     );
   }
+
+  console.log("isFavorite:", artPiecesInfo.isFavorite);
+  /*   console.log("artPiecesInfo", artPiecesInfo); */
 
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>{error.message}</div>;

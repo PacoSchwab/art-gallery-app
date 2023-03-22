@@ -1,7 +1,7 @@
 import ArtPiecePreview from "../ArtPiecePreview/ArtPiecePreview";
 
 export default function ArtPieces({ pieces, onToggleFavorite }) {
-  console.log("pieces", pieces);
+  /* console.log("pieces", pieces); */
 
   const randomIndex = Math.floor(Math.random() * pieces.length);
 

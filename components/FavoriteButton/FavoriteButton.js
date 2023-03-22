@@ -10,7 +10,7 @@ const HeartButton = styled.button`
 `;
 const isFavorite = true;
 
-export default function FavoriteButton({ onToggleFavorite }) {
+export default function FavoriteButton({ onToggleFavorite, slug }) {
   return (
     <>
       <HeartButton
