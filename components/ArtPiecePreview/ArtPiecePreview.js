@@ -8,6 +8,7 @@ export default function ArtPiecePreview({
   artist,
   slug,
   onToggleFavorite,
+  artPiecesInfo,
 }) {
   /* console.log(slug); */
   return (
@@ -21,7 +22,11 @@ export default function ArtPiecePreview({
           style={{ borderRadius: "12px", objectFit: "cover" }}
         />
       </Link>
-      <FavoriteButton onToggleFavorite={onToggleFavorite} slug={slug} />
+      <FavoriteButton
+        onToggleFavorite={onToggleFavorite}
+        slug={slug}
+        artPiecesInfo={artPiecesInfo}
+      />
       <br />
       <Link href={`/art-pieces/${slug}`}>{`"${name}"`}</Link>
       <span>{` by ${artist}`}</span>

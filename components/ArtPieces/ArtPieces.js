@@ -1,12 +1,8 @@
 import ArtPiecePreview from "../ArtPiecePreview/ArtPiecePreview";
 
-export default function ArtPieces({ pieces, onToggleFavorite }) {
-  /* console.log("pieces", pieces); */
-
-  const randomIndex = Math.floor(Math.random() * pieces.length);
-
-  const randomSpotlight = pieces[randomIndex];
-
+export default function ArtPieces({ pieces, onToggleFavorite, artPiecesInfo }) {
+  console.log("pieces", pieces);
+  console.log("2", artPiecesInfo);
   return (
     <ul>
       {pieces.map((piece) => {
@@ -18,6 +14,7 @@ export default function ArtPieces({ pieces, onToggleFavorite }) {
             artist={piece.artist}
             slug={piece.slug}
             onToggleFavorite={onToggleFavorite}
+            artPiecesInfo={artPiecesInfo}
           />
         );
       })}

@@ -8,9 +8,20 @@ const HeartButton = styled.button`
   border-style: dotted;
   border-color: blue;
 `;
-const isFavorite = true;
 
-export default function FavoriteButton({ onToggleFavorite, slug }) {
+export default function FavoriteButton({
+  onToggleFavorite,
+  slug,
+  artPiecesInfo,
+}) {
+  const clickedArtPieceInfo = artPiecesInfo.find(
+    (artPieceInfo) => artPieceInfo.slug === slug
+  ) ?? {
+    isFavorite: false,
+  };
+  const isFavorite = clickedArtPieceInfo.isFavorite;
+  console.log("clickedArtPieceInfo", clickedArtPieceInfo);
+  console.log("isFavorite", isFavorite);
   return (
     <>
       <HeartButton
@@ -18,7 +29,7 @@ export default function FavoriteButton({ onToggleFavorite, slug }) {
           onToggleFavorite(slug);
         }}
       >
-        <Heart fill={isFavorite ? "green" : none} />
+        <Heart fill={isFavorite ? "green" : "transparent"} />
       </HeartButton>
     </>
   );

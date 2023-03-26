@@ -25,36 +25,28 @@ export default function App({ Component, pageProps }) {
     `https://example-apis.vercel.app/api/art`,
     fetcher
   );
-
-  /* console.log("data", data); */
-
   const [artPiecesInfo, setArtPiecesInfo] = useState([]);
-  /* useEffect(() => {
-    setArtPiecesInfo(data);
-    console.log("data:", data);
-  }, []); */
-  function handleToggleFavorite(slug) {
-    /*  setNewEntries([...newEntries, { ...data, id: uid(), date }]); */
-
-    setArtPiecesInfo(
-      artPiecesInfo.map((artPieceInfo) =>
-        slug === artPieceInfo.slug
-          ? {
-              ...artPieceInfo,
-              isFavorite: !artPieceInfo.isFavorite,
-            }
-          : { artPieceInfo }
-      )
-    );
-  }
-
-  /* console.log("art pieces info:", artPiecesInfo);
-  console.log("isFavorite:", artPiecesInfo.isFavorite); */
-  /*   console.log("artPiecesInfo", artPiecesInfo); */
 
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>{error.message}</div>;
 
+  function handleToggleFavorite(slug) {
+    setArtPiecesInfo((artPiecesInfo) => {
+      const info = artPiecesInfo.find(
+        (artPieceInfo) => artPieceInfo.slug === slug
+      );
+
+      if (info) {
+        return artPiecesInfo.map((artPieceInfo) =>
+          artPieceInfo.slug === slug
+            ? { ...artPieceInfo, isFavorite: !artPieceInfo.isFavorite }
+            : artPieceInfo
+        );
+      }
+      return [...artPiecesInfo, { slug, isFavorite: true }];
+    });
+  }
+  console.log("1", artPiecesInfo);
   return (
     <>
       <Layout>
@@ -62,13 +54,10 @@ export default function App({ Component, pageProps }) {
         <Component
           {...pageProps}
           pieces={data}
+          artPiecesInfo={artPiecesInfo}
           onToggleFavorite={handleToggleFavorite}
         />
       </Layout>
     </>
   );
-}
-
-function isArray(myArray) {
-  return myArray.constructor === Array;
 }
