@@ -1,28 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 export default function ArtPieceDetails({
-  image,
-  title,
-  artist,
-  year,
-  genre,
-  colors,
+  onToggleFavorite,
+  currentArtPiece,
+  artPiecesInfo,
 }) {
-  console.log(image);
+  const { imageSource, artist, year, genre, name, colors, slug } =
+    currentArtPiece;
+
   return (
     <>
       <button>
         <Link href={"/art-pieces"}> Display all images</Link>
       </button>
       <Image
-        src={image}
-        alt={title}
+        src={imageSource}
+        alt={name}
         width={300}
         height={200}
         style={{ borderRadius: "12px", objectFit: "scale-down" }}
       />
-      <h1>{title}</h1>
+      <FavoriteButton
+        onToggleFavorite={onToggleFavorite}
+        slug={slug}
+        artPiecesInfo={artPiecesInfo}
+      />
+      <h1>{name}</h1>
       <div>
         <p>Artist: {artist}</p>
         <p>Year: {year}</p>

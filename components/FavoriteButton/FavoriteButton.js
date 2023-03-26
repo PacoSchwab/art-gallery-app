@@ -7,6 +7,7 @@ const HeartButton = styled.button`
   border-radius: 20%;
   border-style: dotted;
   border-color: blue;
+  cursor: pointer;
 `;
 
 export default function FavoriteButton({

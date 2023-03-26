@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
 import ArtPieceDetails from "../../components/ArtPieceDetails/ArtPieceDetails";
 
-export default function ArtPieceDetailsPage({ pieces }) {
+export default function ArtPieceDetailsPage({
+  pieces,
+  artPiecesInfo,
+  onToggleFavorite,
+}) {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -10,16 +14,19 @@ export default function ArtPieceDetailsPage({ pieces }) {
   });
   console.log("Test123", slug);
   console.log(currentArtPiece);
-  const { imageSource, artist, year, genre, name, colors } = currentArtPiece;
-  console.log("HIERIST", imageSource, artist, year, genre, name, colors);
+  /* const { imageSource, artist, year, genre, name, colors, slug } = currentArtPiece; */
+  /* console.log("HIERIST", imageSource, artist, year, genre, name, colors); */
   return (
     <ArtPieceDetails
-      image={imageSource}
+      /*   image={imageSource}
       title={name}
       artist={artist}
       year={year}
       genre={genre}
-      colors={colors}
+      colors={colors} */
+      onToggleFavorite={onToggleFavorite}
+      currentArtPiece={currentArtPiece}
+      artPiecesInfo={artPiecesInfo}
     />
   );
 }
