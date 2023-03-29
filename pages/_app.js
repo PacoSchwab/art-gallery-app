@@ -1,8 +1,7 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import Layout from "../components/Layout/Layout";
-import { useState } from "react";
-import { useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -25,7 +24,10 @@ export default function App({ Component, pageProps }) {
     `https://example-apis.vercel.app/api/art`,
     fetcher
   );
-  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  const [artPiecesInfo, setArtPiecesInfo] = useLocalStorageState(
+    "artPiecesInfo",
+    { defaultValue: [] }
+  );
 
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>{error.message}</div>;
